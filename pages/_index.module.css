@@ -1,0 +1,152 @@
+@layer base {
+  .appContainer {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header {
+    padding: var(--spacing-4) var(--spacing-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .noticeBanner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-4);
+    background: color-mix(in srgb, var(--info) 10%, var(--surface));
+    border-left: 3px solid var(--info);
+    border-radius: var(--radius-sm);
+    position: relative;
+  }
+
+  .noticeIcon {
+    color: var(--info);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .noticeText {
+    flex: 1;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--card-foreground);
+  }
+
+  .noticeText strong {
+    color: var(--info);
+  }
+
+  .noticeClose {
+    background: transparent;
+    border: none;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    padding: var(--spacing-1);
+    border-radius: var(--radius-sm);
+    transition: all var(--animation-duration-fast) ease;
+  }
+
+  .noticeClose:hover {
+    background: var(--muted);
+    color: var(--foreground);
+  }
+
+  .statsBar {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+  }
+
+  .scrollArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-6);
+    background: radial-gradient(ellipse at top center, rgba(0, 212, 255, 0.02) 0%, transparent 60%);
+  }
+
+  .tileGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 5rem; /* space for log viewer if needed */
+  }
+
+  .compactGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 1600px) {
+    .tileGrid:not(.compactGrid) {
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+  }
+
+  .emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--muted-foreground);
+    gap: var(--spacing-4);
+  }
+
+  .emptyAction {
+    margin-top: var(--spacing-2);
+  }
+
+  .versionFooter {
+    padding: var(--spacing-2);
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted-foreground);
+    border-top: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.3);
+    font-family: var(--font-family-monospace);
+    z-index: 5;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: var(--spacing-3) var(--spacing-4);
+    }
+    .scrollArea {
+      padding: var(--spacing-3);
+    }
+    .tileGrid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .statsBar {
+      flex-wrap: wrap;
+      gap: var(--spacing-2);
+    }
+    .versionFooter {
+      font-size: 0.65rem;
+      padding: var(--spacing-2) var(--spacing-3);
+    }
+  }
+}

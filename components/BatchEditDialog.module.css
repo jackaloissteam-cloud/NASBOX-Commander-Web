@@ -1,0 +1,73 @@
+@layer base {
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-4);
+  }
+
+  .row {
+    display: flex;
+    gap: var(--spacing-3);
+  }
+
+  .flex1 { flex: 1; }
+  .flex2 { flex: 2; }
+
+  .monospaceInput {
+    font-family: var(--font-family-monospace) !important;
+  }
+
+  .iconRow {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+  }
+
+  .iconInput {
+    width: 4rem;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  .emojiPresets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-1);
+    flex: 1;
+  }
+
+  .emojiBtn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--animation-duration-fast) ease;
+  }
+
+  .emojiBtn:hover {
+    background: var(--muted);
+    transform: scale(1.1);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: var(--spacing-2);
+  }
+
+  .footerLeft {
+    display: flex;
+  }
+
+  .footerRight {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+}

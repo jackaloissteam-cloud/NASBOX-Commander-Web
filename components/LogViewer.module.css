@@ -1,0 +1,192 @@
+@layer base {
+  .container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #060810;
+    border-top: 1px solid var(--border-highlight);
+    box-shadow: 0 -10px 30px -10px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    
+    /* Animation setup */
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: 
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+      
+    /* Sizing */
+    height: 300px;
+    max-height: 50vh;
+  }
+
+  .container.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-2) var(--spacing-4);
+    background: rgba(10, 13, 19, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .headerTitle {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-3);
+  }
+
+  .slotName {
+    font-family: var(--font-family-monospace);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-shadow: 0 0 8px var(--glow-primary);
+  }
+
+  .logCount {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    font-family: var(--font-family-base);
+  }
+
+  .headerActions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .headerBtn {
+    color: var(--muted-foreground);
+    font-family: var(--font-family-base);
+  }
+
+  .headerBtn:hover:not(:disabled) {
+    color: var(--foreground);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btnLabel {
+    margin-left: var(--spacing-2);
+  }
+
+  .separator {
+    width: 1px;
+    height: 1.25rem;
+    background: var(--border);
+    margin: 0 var(--spacing-2);
+  }
+
+  .closeBtn {
+    color: var(--muted-foreground);
+  }
+
+  .closeBtn:hover {
+    color: var(--error);
+    background: color-mix(in srgb, var(--error) 15%, transparent);
+  }
+
+  .logArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-family: var(--font-family-monospace);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom terminal scrollbar */
+  .logArea::-webkit-scrollbar {
+    width: 8px;
+  }
+  .logArea::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .logArea::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+  }
+  .logArea::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .emptyState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--muted-foreground);
+    font-style: italic;
+    opacity: 0.5;
+  }
+
+  .logList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .logEntry {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    word-break: break-word;
+    padding: 2px 0;
+  }
+
+  .logEntry:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 5px currentColor;
+  }
+
+  .timestamp {
+    color: var(--muted-foreground);
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .message {
+    color: var(--foreground);
+    white-space: pre-wrap;
+  }
+
+  /* Log Types */
+  .info .indicator { color: var(--info); background: var(--info); }
+  .success .indicator { color: var(--success); background: var(--success); }
+  .error .indicator { color: var(--error); background: var(--error); }
+  .warning .indicator { color: var(--warning); background: var(--warning); }
+  
+  .error .message { color: color-mix(in srgb, var(--error) 90%, white); }
+  .warning .message { color: color-mix(in srgb, var(--warning) 90%, white); }
+
+  @media (max-width: 768px) {
+    .btnLabel {
+      display: none;
+    }
+    
+    .container {
+      height: 250px;
+      max-height: 40vh;
+      padding-bottom: 60px;
+    }
+  }
+}
